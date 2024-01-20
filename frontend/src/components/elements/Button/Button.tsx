@@ -3,10 +3,10 @@ import React from "react";
 import { StyledButton } from "./styledButton";
 
 interface ButtonProps {
-  title: string;
+  text: string;
   disabled: boolean;
 }
 
-export default function Button({ title, disabled }: ButtonProps) {
-  return <StyledButton disabled={disabled}>{title}</StyledButton>;
+export default function Button({ text, disabled }: ButtonProps) {
+  return <StyledButton disabled={disabled}>{text}</StyledButton>;
 }
