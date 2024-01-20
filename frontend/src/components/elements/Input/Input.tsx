@@ -3,10 +3,12 @@ import React from "react";
 import { StyledInput, StyledInputHelper, StyledInputWrapper } from "./styledInput";
 
 interface InputProps {
-  placeholder: string;
+  placeholder?: string;
+  name: string;
   helper: string;
   disabled: boolean;
   type: string;
+  mb?: number;
 }
 
 export enum InputTypes {
@@ -16,13 +18,13 @@ export enum InputTypes {
   num = "number"
 }
 
-export default function Input({placeholder, helper, disabled, type}: InputProps) {
+export default function Input({placeholder, name, helper, disabled, type, mb=0}: InputProps) {
   return (
-    <StyledInputWrapper>
+    <StyledInputWrapper mb={mb}>
       {helper !== "" &&
-        <StyledInputHelper>{helper + ":"}</StyledInputHelper>
+        <StyledInputHelper htmlFor={name}>{helper + ":"}</StyledInputHelper>
       }
-      <StyledInput placeholder={placeholder} disabled={disabled} type={type}/>
+      <StyledInput id={name} placeholder={placeholder} disabled={disabled} type={type}/>
     </StyledInputWrapper>
   )
 }

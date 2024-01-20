@@ -17,7 +17,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    Bootstrap;
+    Bootstrap();
   }, []);
 
   return <>{isAuthorized ? <h1>Welcome</h1> : <AuthPage />}</>;
