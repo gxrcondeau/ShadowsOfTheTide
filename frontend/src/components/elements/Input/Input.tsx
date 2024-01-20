@@ -1,36 +1,28 @@
-import React, { FunctionComponent, ReactElement } from "react";
-import { NumRegExp, TextRegExp } from "../../../tools/RegExp";
+import React from "react";
 
-import { StyledInput } from "./styledInput";
+import { StyledInput, StyledInputHelper, StyledInputWrapper } from "./styledInput";
 
-interface Input {
-  component: ReactElement;
+interface InputProps {
+  placeholder: string;
+  helper: string;
+  disabled: boolean;
+  type: string;
 }
 
-export abstract class InputFactory {
-  public abstract factoryMethod(): ReactElement;
+export enum InputTypes {
+  text = "text",
+  email = "email",
+  psswd = "password",
+  num = "number"
 }
 
-export class FirstInputCreator extends InputFactory {
-  public factoryMethod(): ReactElement {
-    let tmp = new FirstInput();
-    tmp.component = <StyledInput>1</StyledInput>;
-    return tmp.component;
-  }
-}
-
-export class SecondInputCreator extends InputFactory {
-  public factoryMethod(): ReactElement {
-    let tmp = new FirstInput();
-    tmp.component = <StyledInput>2</StyledInput>;
-    return tmp.component;
-  }
-}
-
-class FirstInput implements Input {
-  public component!: ReactElement;
-}
-
-class SecondInput implements Input {
-  public component!: ReactElement;
+export default function Input({placeholder, helper, disabled, type}: InputProps) {
+  return (
+    <StyledInputWrapper>
+      {helper !== "" &&
+        <StyledInputHelper>{helper + ":"}</StyledInputHelper>
+      }
+      <StyledInput placeholder={placeholder} disabled={disabled} type={type}/>
+    </StyledInputWrapper>
+  )
 }
